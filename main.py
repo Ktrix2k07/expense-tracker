@@ -1,4 +1,9 @@
-expenses = []
+import json
+try:
+    with open("expenses.json", "r") as file:
+        expenses = json.load(file)
+except FileNotFoundError:
+    expenses = []
 
 while True:
     print("\n--- Expense Tracker ---")
@@ -19,6 +24,8 @@ while True:
         }
 
         expenses.append(expense)
+        with open("expenses.json","w") as file:
+            json.dump(expenses,file,indent=4)
         print("Expense added!")
 
     elif choice == "2":
